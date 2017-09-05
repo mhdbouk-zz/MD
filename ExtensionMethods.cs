@@ -24,5 +24,34 @@ namespace MD.Extension
             bool.TryParse(self, out bool result);
             return result;
         }
+
+        /// <summary>
+        ///  Converts the string representation of a number in a specified style and culture-specific
+        ///  format to its 32-bit signed integer equivalent. If conversion failed, returns 0 
+        /// </summary>
+        public static int ToInt(this string self)
+        {
+            int.TryParse(self, out int result);
+            return result;
+        }
+
+        /// <summary>
+        ///  Converts the string representation of a number in a specified style and culture-specific
+        ///  format to its nullable 32-bit signed integer equivalent. If conversion failed, returns null 
+        /// </summary>
+        public static int? ToNullableInt(this string self)
+        {
+            int.TryParse(self, out int result);
+            return result == 0 ? null : (int?)result;
+        }
+
+        /// <summary>
+        ///  Converts the string representation of a number to its System.Decimal equivalent.
+        /// </summary>
+        public static decimal ToDecimal(this string self)
+        {
+            decimal.TryParse(self, out decimal result);
+            return result;
+        }
     }
 }
