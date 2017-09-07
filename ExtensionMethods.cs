@@ -5,6 +5,7 @@ using System.Reflection;
 using System.Text.RegularExpressions;
 using System.Web;
 using System.Xml.Serialization;
+using System.Collections.Generic;
 
 namespace MD.Extension
 {
@@ -52,6 +53,16 @@ namespace MD.Extension
         {
             decimal.TryParse(self, out decimal result);
             return result;
+        }
+
+        /// <summary>
+        /// Add {key,value} to dictionary if key does not exist; if exist, update existing value
+        /// </summary>
+        public static void AddIfExist<TKey, TValue>(this Dictionary<TKey, TValue> self, TKey key, TValue value)
+        {
+            var existing = self.Any(a => Equals(a.Key, key));
+            if (!existing) self.Add(key, value);
+            else self[key] = value;
         }
     }
 }
